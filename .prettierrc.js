@@ -2,7 +2,7 @@ module.exports = {
   // 한 줄에 허용할 최대 길이
   // 이 길이를 넘으면 자동으로 줄바꿈
   // 값이 작을수록 객체/배열이 여러 줄로 잘 쪼개짐
-  printWidth: 40,
+  printWidth: 45,
 
   // 문자열을 "큰따옴표" 대신 '작은따옴표'로 통일
   singleQuote: true,
