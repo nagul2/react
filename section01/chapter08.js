@@ -7,27 +7,27 @@ let var2 = 10;
 let var3 = 20;
 
 let var4 = var1 ?? var2; // var1, var2 중 null 또는 undefined가 아닌 값 선택
-console.log("var4 = " + var4); // 10
+console.log('var4 = ' + var4); // 10
 
 let var5 = var1 ?? var3; // var1, var2, var3 중 null 또는 undefined가 아닌 값 선택
-console.log("var5 = " + var5); // 20
+console.log('var5 = ' + var5); // 20
 
 let var6 = var2 ?? var3; // 둘 다 null 또는 undefined가 아니므로 왼쪽 값 선택
-console.log("var6 = " + var6); // 10
+console.log('var6 = ' + var6); // 10
 
 // 실무 예시
-let userName = "김너굴";
-let userNickName = "너구리맨";
+let userName = '김너굴';
+let userNickName = '너구리맨';
 
 // 사용자가 이름을 입력했으면 이름을, 닉네임을 입력했으면 닉네임을, 아무것도 입력하지 않았으면 "게스트"를 출력
-let displayName = userName ?? userNickName ?? "게스트";
-console.log("안녕하세요 " + displayName + "님!");
+let displayName = userName ?? userNickName ?? '게스트';
+console.log('안녕하세요 ' + displayName + '님!');
 
 // 2. typeof 연산자
 // -> 값의 타입을 문자열로 반환하는 연산자
 
 let var7 = 1;
-var7 = "hello";
+var7 = 'hello';
 
 let t1 = typeof var7; // "string"
 console.log(t1);
@@ -45,5 +45,5 @@ console.log(t1);
 
 let var8 = 10;
 // 요구사항: 변수 res에 var8의 값이 짝수이면 "짝", 홀수이면 "홀"을 대입
-let res = var8 % 2 === 0 ? "짝" : "홀";
+let res = var8 % 2 === 0 ? '짝' : '홀';
 console.log(res);
