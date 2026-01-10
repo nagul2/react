@@ -9,15 +9,18 @@
 // console.log(add(1, 2));
 // console.log(sub(1, 2));
 
-import mul from './math.js';
-console.log(mul(1, 2));
+// import mul from './math.js';
+// console.log(mul(1, 2));
 
-import { add, sub, div } from './math.js'; // 확장자 필수
-console.log(add(1, 2));
-console.log(sub(1, 2));
+// import { add, sub, div } from './math.js'; // 확장자 필수
+// console.log(add(1, 2));
+// console.log(sub(1, 2));
 
-console.log(div(1, 2));
+// console.log(div(1, 2));
 
 // prettier-ignore
 import mul, { add, sub, div,} from './math.js';
-console.log(mul(1, 2));
+import randomColor from 'randomcolor'; // 설치한 라이브러리는 경로 없이 이름만으로도 불어올 수 있음
+
+const color = randomColor();
+console.log(color);
