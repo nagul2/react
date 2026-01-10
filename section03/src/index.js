@@ -18,9 +18,6 @@ console.log(sub(1, 2));
 
 console.log(div(1, 2));
 
-import mul, {
-  add,
-  sub,
-  div,
-} from './math.js';
+// prettier-ignore
+import mul, { add, sub, div,} from './math.js';
 console.log(mul(1, 2));
