@@ -27,7 +27,6 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      <h1>안녕 리액트!</h1>
     </>
   );
 }
