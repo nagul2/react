@@ -1,6 +1,12 @@
 const Button = ({ children, text, color = "black" }) => {
+  // 이벤트 객체
+  const buttonOnClick = (e) => {
+    console.log(e);
+    console.log(text);
+  };
+
   return (
-    <button style={{ color: color }}>
+    <button onClick={buttonOnClick} style={{ color: color }}>
       {text} - {color.toUpperCase()}
       {children}
     </button>
@@ -31,3 +37,21 @@ export default Button;
 //     </button>
 //   );
 // };
+
+//   return (
+//     <button onClick={() => console.log(text)} style={{ color: color }}>
+//       {text} - {color.toUpperCase()}
+//       {children}
+//     </button>
+//   );
+
+//   return (
+//     <button
+//       onClick={buttonOnClick}
+//       onMouseEnter={buttonOnClick}
+//       style={{ color: color }}
+//     >
+//       {text} - {color.toUpperCase()}
+//       {children}
+//     </button>
+//   );
