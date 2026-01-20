@@ -1,12 +1,10 @@
 import "./App.css";
-import Bulb from "./components/Bulb";
-import Counter from "./components/Counter";
+import Register from "./components/Register";
 
 function App() {
   return (
     <>
-      <Bulb />
-      <Counter />
+      <Register />
     </>
   );
 }
@@ -103,3 +101,19 @@ export default App;
 //     </>
 //   );
 // }
+
+// State와 Props
+// import "./App.css";
+// import Bulb from "./components/Bulb";
+// import Counter from "./components/Counter";
+
+// function App() {
+//   return (
+//     <>
+//       <Bulb />
+//       <Counter />
+//     </>
+//   );
+// }
+
+// export default App;
