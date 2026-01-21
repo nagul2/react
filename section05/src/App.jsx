@@ -1,11 +1,11 @@
 import "./App.css";
 import Register from "./components/Register";
+import HookExam from "./components/HookExam";
 
 function App() {
   return (
     <>
-      <Register />
-      <Register />
+      <HookExam />
     </>
   );
 }
@@ -117,4 +117,13 @@ export default App;
 //   );
 // }
 
-// export default App;
+// useRef
+
+// function App() {
+//   return (
+//     <>
+//       <Register />
+//       <Register />
+//     </>
+//   );
+// }
