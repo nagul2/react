@@ -1,0 +1,19 @@
+/* 내부 여백 생성 */
+body {
+  padding: 20px;
+}
+
+.App {
+  /* 화면 가운데로 배치 및 정렬 */
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.App > section {
+  background-color: rgb(245, 245, 245);
+  border: 1px solid rgb(240, 240, 240);
+
+  border-radius: 5%; /* 약간 둥글게 만듦*/
+  padding: 20px;
+  margin-bottom: 10px;
+}
