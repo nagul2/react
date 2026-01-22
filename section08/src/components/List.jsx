@@ -9,7 +9,7 @@ const List = ({ todos }) => {
     setSearch(e.target.value);
   };
 
-  const getFilteredDate = () => {
+  const getFilteredData = () => {
     if (search === "") {
       return todos;
     }
@@ -18,7 +18,7 @@ const List = ({ todos }) => {
     );
   };
 
-  const filteredTodos = getFilteredDate();
+  const filteredTodos = getFilteredData();
 
   return (
     <div className="List">
