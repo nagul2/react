@@ -5,7 +5,6 @@ import Header from "./components/Header.jsx";
 import Editor from "./components/Editor.jsx";
 import List from "./components/List.jsx";
 
-// 컴포넌트에 표현될 임시 Todo 데이터들
 const mockData = [
   {
     id: 0,
@@ -42,12 +41,24 @@ function App() {
     setTodos([newTodo, ...todos]);
   };
 
+  const onUpdate = (targetId) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo,
+      ),
+    );
+  };
+
+  const onDelete = (targetId) => {
+    setTodos(todos.filter((todo) => todo.id !== targetId));
+  };
+
   return (
     <>
       <div className="App">
         <Header />
         <Editor onCreate={onCreate} />
-        <List todos={todos} />
+        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
       </div>
     </>
   );
