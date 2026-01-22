@@ -6,7 +6,6 @@ const TodoItem = ({ id, isDone, content, date }) => {
       <input checked={isDone} type="checkbox" />
       <div className="content">{content}</div>
       <div className="date">{new Date(date).toLocaleDateString()}</div>
-      <div className="date">{}</div>
       <button>삭제</button>
     </div>
   );
