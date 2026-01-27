@@ -1,7 +1,10 @@
 import "./Editor.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { TodoDispatchContext } from "../App.jsx";
 
-const Editor = ({ onCreate }) => {
+const Editor = () => {
+  // useContext: 인수로 전달한 context로 공급된 데이터를 반환해주는 함수
+  const { onCreate } = useContext(TodoDispatchContext);
   const [content, setContent] = useState("");
   const contentRef = useRef();
 

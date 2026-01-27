@@ -1,8 +1,11 @@
 import "./List.css";
 import TodoItem from "./TodoItem.jsx";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
+import { TodoStateContext } from "../App.jsx";
 
-const List = ({ todos, onUpdate, onDelete }) => {
+const List = () => {
+  // 객체로 전달하지 않았기 때문에 구조 분해 할당 문법이 아니라 그냥 변수로 받음
+  const todos = useContext(TodoStateContext);
   const [search, setSearch] = useState("");
 
   const onChangeSearch = (e) => {
@@ -51,14 +54,7 @@ const List = ({ todos, onUpdate, onDelete }) => {
       />
       <div className="todos_wrapper">
         {filteredTodos.map((todo) => {
-          return (
-            <TodoItem
-              key={todo.id}
-              {...todo}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-            />
-          );
+          return <TodoItem key={todo.id} {...todo} />;
         })}
       </div>
     </div>
