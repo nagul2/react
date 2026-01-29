@@ -29,11 +29,9 @@ function reducer(state, action) {
       return [action.data, ...state];
     case "UPDATE":
       return state.map((item) =>
-        // 타입이 서로 다를 수 있는 오류를 방지하기 위해 String() 메서드를 통해 동일한 타입으로 형변환 후 비교
         String(item.id) === String(action.data.id) ? action.data : item,
       );
     case "DELETE":
-      // State에 저장된 item.id와 action.id가 다른 요소만 걸러내서 반환하면 action.id의 요소만 걸러져서 반환됨 -> 삭제됨
       return state.filter((item) => String(item.id) !== String(action.id));
   }
 }
@@ -43,9 +41,8 @@ const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
-  const idRef = useRef(3); // 일기 아이템의 id값을 저장, mockData의 id가 2번까지 있으므로 초기값을 3으로 설정
+  const idRef = useRef(3);
 
-  // 새로운 일기 추가
   const onCreate = (createdDate, emotionId, content) => {
     dispatch({
       type: "CREATE",
@@ -58,7 +55,6 @@ function App() {
     });
   };
 
-  // 기존 일기 수정
   const onUpdate = (id, createdDate, emotionId, content) => {
     dispatch({
       type: "UPDATE",
@@ -71,7 +67,6 @@ function App() {
     });
   };
 
-  // 일기 삭제 - 삭제하는데에는 id값만 알고 있어도 됨
   const onDelete = (id) => {
     dispatch({
       type: "DELETE",
@@ -81,27 +76,6 @@ function App() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          onCreate(new Date().getTime(), 1, "Hello");
-        }}
-      >
-        일기 추가 테스트
-      </button>
-      <button
-        onClick={() => {
-          onUpdate(1, new Date().getTime(), 3, "수정된 일기입니다");
-        }}
-      >
-        일기 수정 테스트
-      </button>
-      <button
-        onClick={() => {
-          onDelete(1);
-        }}
-      >
-        일기 삭제 테스트
-      </button>
       <DiaryStateContext.Provider value={data}>
         <DiaryDispatchContext.Provider
           value={{
@@ -173,3 +147,26 @@ export default App;
 //       console.log("123번 버튼 클릭");
 //     }}
 //   />
+
+// 일기 관리기능 테스트 버튼
+//   <button
+//     onClick={() => {
+//       onCreate(new Date().getTime(), 1, "Hello");
+//     }}
+//   >
+//     일기 추가 테스트
+//   </button>
+//   <button
+//     onClick={() => {
+//       onUpdate(1, new Date().getTime(), 3, "수정된 일기입니다");
+//     }}
+//   >
+//     일기 수정 테스트
+//   </button>
+//   <button
+//     onClick={() => {
+//       onDelete(1);
+//     }}
+//   >
+//     일기 삭제 테스트
+//   </button>
