@@ -1,6 +1,6 @@
 import "./Editor.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import EmotionItem from "./EmotionItem.jsx";
@@ -47,7 +47,7 @@ const getStringedDate = (targetDate) => {
   return `${year}-${month}-${date}`;
 };
 
-const Editor = ({ onSubmit }) => {
+const Editor = ({ initData, onSubmit }) => {
   const nav = useNavigate();
 
   const [input, setInput] = useState({
@@ -55,6 +55,19 @@ const Editor = ({ onSubmit }) => {
     emotionId: 3,
     content: "",
   });
+
+  // deps인 initData가 변경이 되면 동작
+  // initData에 값이 있으면 setInput 함수를 동작하여 initData의 값을 상태에 보관
+  // 이때 createdData는 Date 객체이기 때문에 initData의 timeStamp를 Date로 형변환 해서 넘겨주어야 함,
+  // 안전한 형변환을 위해 먼저 Number로 변경 후 Date로 형변환
+  useEffect(() => {
+    if (initData) {
+      setInput({
+        ...initData,
+        createdDate: new Date(Number(initData.createdDate)),
+      });
+    }
+  }, [initData]);
 
   // e.target.value는 문자열로 들어옴 -> 날짜인 경우 Date로 변환해야함
   const onChangeInput = (e) => {
