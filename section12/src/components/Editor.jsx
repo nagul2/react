@@ -2,50 +2,11 @@ import "./Editor.css";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { emotionList } from "../util/constants";
+import { getStringedDate } from "../util/get-stringed-date";
 
 import EmotionItem from "./EmotionItem.jsx";
 import Button from "./Button.jsx";
-
-const emotionList = [
-  {
-    emotionId: 1,
-    emotionName: "완전 좋음",
-  },
-  {
-    emotionId: 2,
-    emotionName: "좋음",
-  },
-  {
-    emotionId: 3,
-    emotionName: "그럭저럭",
-  },
-  {
-    emotionId: 4,
-    emotionName: "나쁨",
-  },
-  {
-    emotionId: 5,
-    emotionName: "끔찍함",
-  },
-];
-
-// 날짜 -> YYYY-MM-DD
-const getStringedDate = (targetDate) => {
-  let year = targetDate.getFullYear();
-  let month = targetDate.getMonth() + 1;
-  let date = targetDate.getDate();
-
-  // 01 ~ 09 표현
-  if (month < 10) {
-    month = `0${month}`;
-  }
-
-  if (date < 10) {
-    date = `0${date}`;
-  }
-
-  return `${year}-${month}-${date}`;
-};
 
 const Editor = ({ initData, onSubmit }) => {
   const nav = useNavigate();
@@ -56,10 +17,6 @@ const Editor = ({ initData, onSubmit }) => {
     content: "",
   });
 
-  // deps인 initData가 변경이 되면 동작
-  // initData에 값이 있으면 setInput 함수를 동작하여 initData의 값을 상태에 보관
-  // 이때 createdData는 Date 객체이기 때문에 initData의 timeStamp를 Date로 형변환 해서 넘겨주어야 함,
-  // 안전한 형변환을 위해 먼저 Number로 변경 후 Date로 형변환
   useEffect(() => {
     if (initData) {
       setInput({
@@ -69,7 +26,6 @@ const Editor = ({ initData, onSubmit }) => {
     }
   }, [initData]);
 
-  // e.target.value는 문자열로 들어옴 -> 날짜인 경우 Date로 변환해야함
   const onChangeInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -84,8 +40,6 @@ const Editor = ({ initData, onSubmit }) => {
     });
   };
 
-  // 작성 완료 버튼을 동적으로 동작하게 하기 위한 함수
-  // 생성 페이지 -> 새 일기 생성, 수정 페이지 -> 일기 수정
   const onClickSubmitButton = () => {
     onSubmit(input);
   };

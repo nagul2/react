@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { DiaryStateContext } from "../App.jsx";
+import { useContext } from "react";
 import { DiaryDispatchContext } from "../App.jsx";
+
+import useDiary from "../hooks/useDiary.jsx";
 
 import Header from "../components/Header.jsx";
 import Editor from "../components/Editor.jsx";
@@ -11,35 +12,15 @@ const Edit = () => {
   const nav = useNavigate();
   const params = useParams();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
-  const data = useContext(DiaryStateContext);
-  const [currentDiaryItem, setCurrentDiaryItem] = useState();
+  const currentDiaryItem = useDiary(params.id);
 
-  // 현재 일기의 정보들을 꺼내는 동작을 useEffect를 통해서 활용
-  useEffect(() => {
-    const findDiaryItem = data.find(
-      (item) => String(item.id) === String(params.id),
-    );
-
-    // 잘못된 페이지로 갈 경우 경고창 띄우고 Home으로 이동
-    if (!findDiaryItem) {
-      alert("존재하지 않는 일기입니다.");
-      nav("/", { replace: true });
-    }
-
-    setCurrentDiaryItem(findDiaryItem);
-  }, [params.id, nav]);
-
-  // 삭제하기 전 안내 문구를 띄우고 삭제
   const onClickDelete = () => {
-    // window.confirm : 브라우저의 내장 기능을 사용하는 함수 -> 확인, 취소 버튼이 달려있는 팝업창을 띄움,
-    // 확인 선택시 true, 취소 선택 시 false가 반환됨
     if (window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요.")) {
       onDelete(params.id);
       nav("/", { replace: true });
     }
   };
 
-  // 작성완료 버튼 -> onUpdate 동작
   const onSubmit = (input) => {
     if (window.confirm("일기를 정말 수정할까요?")) {
       onUpdate(
@@ -90,3 +71,27 @@ export default Edit;
 //   };
 
 //   const currentDiaryItem = getCurrentDiaryItem();
+
+// 코드 설명
+//   // 삭제하기 전 안내 문구를 띄우고 삭제
+//   const onClickDelete = () => {
+//     // window.confirm : 브라우저의 내장 기능을 사용하는 함수 -> 확인, 취소 버튼이 달려있는 팝업창을 띄움,
+//     // 확인 선택시 true, 취소 선택 시 false가 반환됨
+//     if (window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요.")) {
+//       onDelete(params.id);
+//       nav("/", { replace: true });
+//     }
+//   };
+
+//   // 작성완료 버튼 -> onUpdate 동작
+//   const onSubmit = (input) => {
+//     if (window.confirm("일기를 정말 수정할까요?")) {
+//       onUpdate(
+//         params.id,
+//         input.createdDate.getTime(),
+//         input.emotionId,
+//         input.content,
+//       );
+//       nav("/", { replace: true });
+//     }
+//   };
