@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getStringedDate } from "../util/get-stringed-date";
 
 import useDiary from "../hooks/useDiary.jsx";
+import usePageTitle from "../hooks/usePageTitle.jsx";
 
 import Header from "../components/Header.jsx";
 import Button from "../components/Button.jsx";
@@ -10,6 +11,7 @@ import Viewer from "../components/Viewer.jsx";
 const Diary = () => {
   const params = useParams();
   const nav = useNavigate();
+  usePageTitle(`${params.id}번 일기`);
 
   const currentDiaryItem = useDiary(params.id);
 
